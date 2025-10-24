@@ -2781,6 +2781,10 @@ export class DLMM {
       ? Math.ceil(slippage / (this.lbPair.binStep / 100))
       : MAX_ACTIVE_BIN_SLIPPAGE;
 
+    console.log('[SDK DEBUG] initializePositionAndAddLiquidityByStrategy');
+    console.log('[SDK DEBUG] slippage input:', slippage);
+    console.log('[SDK DEBUG] calculated maxActiveBinSlippage:', maxActiveBinSlippage);
+
     const preInstructions: TransactionInstruction[] = [];
     const initializePositionIx = await this.program.methods
       .initializePosition(minBinId, maxBinId - minBinId + 1)
@@ -2885,6 +2889,14 @@ export class DLMM {
       maxActiveBinSlippage,
       strategyParameters,
     };
+
+    console.log('[SDK DEBUG] liquidityParams:', JSON.stringify({
+      amountX: totalXAmount.toString(),
+      amountY: totalYAmount.toString(),
+      activeId,
+      maxActiveBinSlippage,
+      strategyParameters
+    }, null, 2));
 
     const addLiquidityAccounts = {
       position: positionPubKey,
