@@ -4,7 +4,7 @@
   "main": "./ts-client/dist/index.js",
   "types": "./ts-client/dist/index.d.ts",
   "scripts": {
-    "postinstall": "cd ts-client && npm install && npm run build"
+    "postinstall": "cd ts-client && npm ci && npm run build"
   },
   "dependencies": {
     "pako": "^2.1.0"
