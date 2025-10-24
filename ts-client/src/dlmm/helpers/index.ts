@@ -395,7 +395,7 @@ export function getAndCapMaxActiveBinSlippage(
   binStep: number,
   maxActiveBinSlippage: number
 ) {
-  return slippagePercentage
+  return slippagePercentage != null
     ? Math.ceil(slippagePercentage / (binStep / 100))
     : maxActiveBinSlippage;
 }
