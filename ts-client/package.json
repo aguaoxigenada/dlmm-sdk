@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "tsup",
-    "prepare": "npm run build",
+    "postinstall": "npm run build",
     "start": "npm run build -- --watch",
     "test": "jest 'src/test/(ilm|sdk_token2022|sdk|single_bin|token_2022|rebalance_parameter_builder|rebalance|bug_fix).test.ts'",
     "unit-test": "jest src/test/calculate_distribution.test.ts",
