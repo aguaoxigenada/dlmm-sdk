@@ -2777,13 +2777,14 @@ export class DLMM {
   }: TInitializePositionAndAddLiquidityParamsByStrategy) {
     const { maxBinId, minBinId } = strategy;
 
-    const maxActiveBinSlippage = slippage != null
-      ? Math.ceil(slippage / (this.lbPair.binStep / 100))
-      : MAX_ACTIVE_BIN_SLIPPAGE;
+    const maxActiveBinSlippage =
+      slippage != null
+        ? Math.ceil(slippage / (this.lbPair.binStep / 100))
+        : MAX_ACTIVE_BIN_SLIPPAGE;
 
-    console.log('[SDK DEBUG] initializePositionAndAddLiquidityByStrategy');
-    console.log('[SDK DEBUG] slippage input:', slippage);
-    console.log('[SDK DEBUG] calculated maxActiveBinSlippage:', maxActiveBinSlippage);
+    // console.log('[SDK DEBUG] initializePositionAndAddLiquidityByStrategy');
+    // console.log('[SDK DEBUG] slippage input:', slippage);
+    // console.log('[SDK DEBUG] calculated maxActiveBinSlippage:', maxActiveBinSlippage);
 
     const preInstructions: TransactionInstruction[] = [];
     const initializePositionIx = await this.program.methods
@@ -2890,13 +2891,22 @@ export class DLMM {
       strategyParameters,
     };
 
-    console.log('[SDK DEBUG] liquidityParams:', JSON.stringify({
-      amountX: totalXAmount.toString(),
-      amountY: totalYAmount.toString(),
-      activeId,
-      maxActiveBinSlippage,
-      strategyParameters
-    }, null, 2));
+    /*
+    console.log(
+      "[SDK DEBUG] liquidityParams:",
+      JSON.stringify(
+        {
+          amountX: totalXAmount.toString(),
+          amountY: totalYAmount.toString(),
+          activeId,
+          maxActiveBinSlippage,
+          strategyParameters,
+        },
+        null,
+        2
+      )
+    );
+    */
 
     const addLiquidityAccounts = {
       position: positionPubKey,
@@ -2979,9 +2989,10 @@ export class DLMM {
     const { lowerBinId, upperBinId, binIds } =
       this.processXYAmountDistribution(xYAmountDistribution);
 
-    const maxActiveBinSlippage = slippage != null
-      ? Math.ceil(slippage / (this.lbPair.binStep / 100))
-      : MAX_ACTIVE_BIN_SLIPPAGE;
+    const maxActiveBinSlippage =
+      slippage != null
+        ? Math.ceil(slippage / (this.lbPair.binStep / 100))
+        : MAX_ACTIVE_BIN_SLIPPAGE;
 
     if (upperBinId >= lowerBinId + DEFAULT_BIN_PER_POSITION.toNumber()) {
       throw new Error(
@@ -3256,9 +3267,10 @@ export class DLMM {
   }: TInitializePositionAndAddLiquidityParamsByStrategy): Promise<Transaction> {
     const { maxBinId, minBinId } = strategy;
 
-    const maxActiveBinSlippage = slippage != null
-      ? Math.ceil(slippage / (this.lbPair.binStep / 100))
-      : MAX_ACTIVE_BIN_SLIPPAGE;
+    const maxActiveBinSlippage =
+      slippage != null
+        ? Math.ceil(slippage / (this.lbPair.binStep / 100))
+        : MAX_ACTIVE_BIN_SLIPPAGE;
 
     const preInstructions: TransactionInstruction[] = [];
 
@@ -3432,9 +3444,10 @@ export class DLMM {
   }: TInitializePositionAndAddLiquidityParams): Promise<
     Transaction | Transaction[]
   > {
-    const maxActiveBinSlippage = slippage != null
-      ? Math.ceil(slippage / (this.lbPair.binStep / 100))
-      : MAX_ACTIVE_BIN_SLIPPAGE;
+    const maxActiveBinSlippage =
+      slippage != null
+        ? Math.ceil(slippage / (this.lbPair.binStep / 100))
+        : MAX_ACTIVE_BIN_SLIPPAGE;
 
     const positionAccount = await this.program.account.positionV2.fetch(
       positionPubKey
